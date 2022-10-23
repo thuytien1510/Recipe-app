@@ -42,14 +42,14 @@ export default function RecipesModal({ recipe, displayForm, onClose }) {
       <Modal.Body>
         {isEdit || isAddingNew ?
           <form className="rounded-4">
-            <div className="p-3 card form-recipe">
+            <div className="p-3 card form-recipe d-grid gap-3">
               <input type="text" {...register("name")} placeholder="Name" className="border-dark" />
               <input
                 {...register("imgURL")}
                 placeholder="Image URL"
-                className="border-dark"
+                className="border-dark" 
               />
-              {imgURL && <img src={imgURL} alt="" width="200px" className="mb-3" />}
+              {imgURL && <img src={imgURL} alt="" width="200px" className="border border-3 my-0 mx-auto" />}
               <input
                 {...register("duration")}
                 placeholder="Duration"
@@ -57,7 +57,7 @@ export default function RecipesModal({ recipe, displayForm, onClose }) {
                 className="border-dark"
               />
               <textarea
-                className="border-dark"
+                className="border-dark border border-2 rounded-3 p-2 fs-6"
                 {...register("description")}
                 placeholder="Description"
               />

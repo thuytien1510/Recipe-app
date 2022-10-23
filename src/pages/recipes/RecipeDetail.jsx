@@ -14,20 +14,22 @@ function RecipeDetail({ recipe }) {
 
     return (
         <div className='text-dark  card'>
-            <img src={recipe.imgURL} alt="" className='w-50 h-50 d-block rounded-1 border border-3 m-3' />
+            <img src={recipe.imgURL} alt="" className='w-50 h-50 d-block rounded-1 border border-3 my-3 mx-auto' />
             <div className=' p-3 pt-1 w-80'>
-                <h2 className='mt-1'>{recipe.name}</h2>
-                <h3 className='mt-1'>Duration: {recipe.duration} mins</h3>
+                <h2 className='mt-1 text-center text-warning'>{recipe.name}</h2>
+                <h4 className='mt-1 text-center'>Duration: {recipe.duration} mins</h4>
 
-                <h4 className='mt-2'>{recipe.description}</h4>
+                <h5 className='mt-2 text-center'>{recipe.description}</h5>
 
-                <h4>Ingredients:</h4>
+                <div className='border border-1 p-3 rounded-5'>
+                <h5>Ingredients:</h5>
                 {recipe.ingredients.map(item => {
                     const ing = ingredients.find(i => i.id === item.id);
                     return (
                         <div className='border border-1 p-2 m-1 rounded fs-5' >{item?.quantity} {ing?.unit} of {ing?.name}</div>
                     )
                 })}
+                </div>
             </div>
         </div>
     )

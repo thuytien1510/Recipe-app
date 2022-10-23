@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getIngredients } from "../../redux/selectors";
+import './StyleRecipeComponent.css'
 
 export default function RecipeItem({ recipe, onClick }) {
   const ingredients = useSelector(getIngredients);
@@ -19,7 +20,7 @@ export default function RecipeItem({ recipe, onClick }) {
         onClick(recipe);
       }}
       key={recipe.id}
-      className="d-flex justify-content-between align-items-center list-item flex-wrap border rounded p-2 bg-white text-black mb-4 box-hover"
+      className="d-flex justify-content-between align-items-center list-item flex-wrap border rounded p-2 bg-white text-black mb-4 form-recipe box-hover"
       style={{ minHeight: "100px", cursor: "pointer" }}
     >
       <div className="content ">

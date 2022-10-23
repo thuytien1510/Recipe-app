@@ -32,7 +32,7 @@ export default function Ingredients() {
   };
 
   return (
-    <div className="container card mt-4 pb-5 p-4 w-50 box-show">
+    <div className="container card mt-4 mb-4 pb-5 p-4 w-75 box-show d-flex justify-content-center align-items-center">
       <IngredientInput
         onChange={handleAdd}
       />

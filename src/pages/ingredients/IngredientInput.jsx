@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
+import './IngredientInputStyle.css'
 
 export default function IngredientInput({ ingredient, onChange, onCancel }) {
   const [name, setName] = useState(ingredient?.name || '');
@@ -31,21 +32,21 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
   }
 
   return (
-    <form className="d-flex">
+    <form className="d-flex flex-wrap mb-4 gap-2 w-75">
       <input type="text" value={name} onChange={handleNameChange} placeholder="Ingredient name" />
       <input type="text" value={unit} onChange={handleUnitChange} placeholder="Unit" />
       <input type="number" value={price} onChange={handlePriceChange} placeholder="Ingredient price" />
       {ingredient?.id ?
-        <>
+        <div>
           <Button variant="default" onClick={onCancel}>
             Cancel
           </Button>
           <Button variant="primary" onClick={handleSave}>
             Save
           </Button>
-        </>
+        </div>
         :
-        <Button variant="primary" onClick={handleAdd}>
+        <Button variant="primary"  onClick={handleAdd}>
           Add
         </Button>
       }
