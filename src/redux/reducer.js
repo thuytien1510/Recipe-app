@@ -1,3 +1,5 @@
+import { ACTION } from "./actions";
+
 const initState = {
   recipeList: [
     {
@@ -52,44 +54,44 @@ const initState = {
       ],
     },
   ],
-  shoppingList: [
+  ingredients: [
     {
       id: 1,
       name: "Bread",
-      quantity: 80,
+      price: 80,
     },
     {
       id: 2,
       name: "chicken",
-      quantity: 100,
+      price: 100,
     },
     {
       id: 3,
       name: "Apples",
-      quantity: 20,
+      price: 20,
     },
     {
       id: 4,
       name: "egg",
-      quantity: 55,
+      price: 55,
     },
     {
       id: 5,
       name: "meat",
-      quantity: 22,
+      price: 22,
     },
   ],
 };
+
 const rootReducer = (state = initState, action) => {
-  console.log(state, action);
   switch (action.type) {
-    case "recipeList/addRecipe":
+    case ACTION.ADD_RECIPE:
       return {
         ...state,
         recipeList: [...state.recipeList, action.payload],
       };
 
-    case "recipeList/updateRecipe":
+    case ACTION.UPDATE_RECIPE:
       const recipeList = [...state.recipeList];
       const index = recipeList.findIndex(
         (recipe) => recipe.id === action.payload.id
@@ -97,7 +99,7 @@ const rootReducer = (state = initState, action) => {
       recipeList[index] = action.payload;
       return { ...state, recipeList: recipeList };
 
-    case "recipeList/removeRecipe":
+    case ACTION.REMOVE_RECIPE:
       const recipeList1 = [...state.recipeList];
       const removeRecipe = recipeList.find(
         (recipe) => recipe.id === action.payload.id
@@ -105,27 +107,27 @@ const rootReducer = (state = initState, action) => {
       recipeList1.slice(removeRecipe, 1);
       return { ...state, recipeList: recipeList1 };
 
-    case "shoppingList/addIngredient":
+    case ACTION.ADD_INGREDIENT:
       return {
         ...state,
-        shoppingList: [...state.shoppingList, action.payload],
+        ingredients: [...state.ingredients, action.payload],
       };
 
-    case "shoppingList/updateIngredient":
-      const shoppingList = [...state.shoppingList];
-      const index2 = shoppingList.findIndex(
-        (shopping) => shopping.id === action.payload.id
-      );
-      shoppingList[index2] = action.payload;
-      return { ...state, shoppingList: shoppingList };
+    case ACTION.UPDATE_INGREDIENT: {
+      const foundIndex = state.ingredients.findIndex(ingdt => ingdt.id === action.payload.id);
+      const newIngredients = [
+        ...state.ingredients.slice(0, foundIndex),
+        action.payload,
+        ...state.ingredients.slice(foundIndex + 1)
+      ];
 
-    case "shoppingList/removeIngredient":
-      const shoppingList1 = [...state.shoppingList];
-      const removeItem = shoppingList1.findIndex(
-        (shopping) => shopping.id === action.payload.id
-      );
-      shoppingList1.splice(removeItem, 1);
-      return { ...state, shoppingList: shoppingList1 };
+      return { ...state, ingredients: newIngredients };
+    }
+
+    case ACTION.REMOVE_INGREDIENT: {
+      const newIngredients = state.ingredients.filter((ingdt) => (ingdt.id !== action.payload));
+      return { ...state, ingredients: newIngredients };
+    }
 
     default:
       return state;
