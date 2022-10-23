@@ -32,8 +32,7 @@ export default function IngredientItem({ ingredient, onUpdate, onRemove }) {
       <div className="text-dark fs-5 d-flex flex-wrap gap-3 ingredient">
         <span>Name: {ingredient.name}</span>
          <span>Unit: {ingredient.unit}</span>
-         <span>Price:
-        {ingredient.price}</span>
+         <span>Price: {ingredient.price}</span>
       </div>
       <div className="d-flex gap-2">
       <Button variant="primary" onClick={handleEdit}>
