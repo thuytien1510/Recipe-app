@@ -3,8 +3,9 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 
-export default function IngredientInput({ typeInput, ingredient, onChange, onCancel }) {
+export default function IngredientInput({ ingredient, onChange, onCancel }) {
   const [name, setName] = useState(ingredient?.name || '');
+  const [unit, setUnit] = useState(ingredient?.unit || '');
   const [price, setPrice] = useState((ingredient?.price || '0').toString());
 
   const handleAdd = () => {
@@ -21,6 +22,10 @@ export default function IngredientInput({ typeInput, ingredient, onChange, onCan
     setName(event.target.value);
   }
 
+  const handleUnitChange = (event) => {
+    setUnit(event.target.value);
+  }
+
   const handlePriceChange = (event) => {
     setPrice(Number(event.target.value));
   }
@@ -28,6 +33,7 @@ export default function IngredientInput({ typeInput, ingredient, onChange, onCan
   return (
     <form className="d-flex">
       <input type="text" value={name} onChange={handleNameChange} placeholder="Ingredient name" />
+      <input type="text" value={unit} onChange={handleUnitChange} placeholder="Unit" />
       <input type="number" value={price} onChange={handlePriceChange} placeholder="Ingredient price" />
       {ingredient?.id ?
         <>

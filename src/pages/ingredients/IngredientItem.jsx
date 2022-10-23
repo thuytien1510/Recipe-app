@@ -5,7 +5,6 @@ import IngredientInput from "./IngredientInput";
 
 export default function IngredientItem({ ingredient, onUpdate, onRemove }) {
   const [isEdit, setIsEdit] = useState(false);
-
   const handleEdit = () => setIsEdit(true);
 
   const handlCancel = () => {
@@ -29,7 +28,7 @@ export default function IngredientItem({ ingredient, onUpdate, onRemove }) {
     />
     :
     <div className="d-flex">
-      <div style={{ color: 'black' }}>{ingredient.name}  {ingredient.price}</div>
+      <div style={{ color: 'black' }}>Name: {ingredient.name} |  Unit:{ingredient.unit} | Price:{ingredient.price}</div>
       <Button variant="primary" onClick={handleEdit}>
         Edit
       </Button>

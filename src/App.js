@@ -11,8 +11,8 @@ import Ingredients from "./pages/ingredients/Ingredients";
 function App() {
   return (
     <>
-      <Headers />
       <BrowserRouter>
+        <Headers />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/ingredients" element={<Ingredients />} />

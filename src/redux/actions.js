@@ -1,7 +1,7 @@
 export const ACTION = {
-  ADD_RECIPE: "recipeList/addRecipe",
-  UPDATE_RECIPE: "recipeList/updateRecipe",
-  REMOVE_RECIPE: "recipeList/removeRecipe",
+  ADD_RECIPE: "recipes/addRecipe",
+  UPDATE_RECIPE: "recipes/updateRecipe",
+  REMOVE_RECIPE: "recipes/removeRecipe",
   ADD_INGREDIENT: "ingredients/addIngredient",
   UPDATE_INGREDIENT: "ingredients/updateIngredient",
   REMOVE_INGREDIENT: "ingredients/removeIngredient",

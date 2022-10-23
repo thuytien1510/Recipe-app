@@ -1,92 +1,70 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
+import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { addRecipe } from "../../redux/actions";
 import { recipeListSelector } from "../../redux/selectors";
-import EditForm from "./children/EditForm";
-import RecipeDetail from "./children/RecipeDetail";
 import '../../App.css'
+import RecipeItem from "./RecipeItem";
+import RecipesModal from "./RecipesModal";
 
 export default function Recipes() {
   const [displayForm, setDisplayForm] = useState(false);
-  const [recipe, setRecipe] = useState(false);
+  const [selectedRecipe, setSelectedRecipe] = useState();
   const dispatch = useDispatch();
-  const recipeList = useSelector(recipeListSelector);
+  const recipes = useSelector(recipeListSelector);
 
-  const handelDisplay = () => {
-    setDisplayForm(!displayForm);
-    setRecipe(false);
-  };
+  // const handelDisplay = () => {
+  //   setDisplayForm(!displayForm);
+  //   setRecipe(false);
+  // };
 
-  const addNewRecipe = (data) => {
-    const recipe = {
-      id: uuidv4(),
-      ...data,
-    };
-    dispatch(addRecipe(recipe));
-  };
+  // const addNewRecipe = (data) => {
+  //   const recipe = {
+  //     id: uuidv4(),
+  //     ...data,
+  //   };
+  //   dispatch(addRecipe(recipe));
+  // };
+
+  const handleCloseForm = () => {
+    setDisplayForm(false);
+  }
+
+  const handleViewRecipe = (recipe) => {
+    setSelectedRecipe(recipe);
+    setDisplayForm(true);
+  }
+
+  const handleAddRecipe = () => {
+    setSelectedRecipe();
+    setDisplayForm(true);
+  }
 
   return (
     <div className="container mt-4">
-      <Button variant="dark" onClick={handelDisplay} className="mb-5 p-2 px-4">
-        New Recipe
+      <Button variant="dark" onClick={handleAddRecipe} className="mb-5 p-2 px-4">
+        Add New Recipe
       </Button>
-      {(!displayForm && !recipe) && (
-        <>
-          <h1 className="text-center text-dark">Please select a Recipe!</h1>
-          <hr className="bg-dark" />
-        </>
-      )}
+
       <div className="row">
         <div className="col-md-6">
-
-          {displayForm && <hr className="bg-dark" />}
-          {recipeList.map((recipe) => (
-            <div
-              onClick={() => {
-                setRecipe(recipe);
-                setDisplayForm(false);
-              }}
+          {recipes.map((recipe) => (
+            <RecipeItem
               key={recipe.id}
-              className="d-flex justify-content-between align-items-center list-item flex-wrap border rounded p-2 bg-white text-black mb-4 box-hover"
-              style={{ minHeight: "100px", cursor: "pointer" }}
-            >
-              <div className="content ">
-                <h3>{recipe.name}</h3>
-                <p>Descriptiton: {recipe.description}</p>
-                <p>
-                  Ingredients:{" "}
-                  {recipe.ingredients.map((item, index) => (
-                    <span key={index} className="me-2 fst-italic fw-semibold">
-                      {item.name}({item.quantity})
-                    </span>
-                  ))}
-                </p>
-              </div>
-              <img
-                src={recipe.imgURL}
-                alt={`img-recipe-${recipe.name}`}
-                width="100px"
-                style={{ maxWidth: "100px" }}
-              />
-            </div>
+              recipe={recipe}
+              onClick={handleViewRecipe}
+            />
           ))}
         </div>
-        <div className="col-md-6">
-          {recipe && (
-            <>
-              <RecipeDetail recipe={recipe} />
-            </>
-          )}
-          {displayForm && (
-            <>
-              <EditForm addNewRecipe={addNewRecipe} />
-            </>
-          )}
-        </div>
       </div>
+
+      <RecipesModal
+        recipe={selectedRecipe}
+        displayForm={displayForm}
+        onClose={handleCloseForm}
+      />
     </div>
   );
 }

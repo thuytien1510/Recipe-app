@@ -1,24 +1,25 @@
 import { ACTION } from "./actions";
 
 const initState = {
-  recipeList: [
+  recipes: [
     {
       id: 1,
       name: "Hamburger1",
       description: "Hamburger description1",
+      duration: '18',
       imgURL:
         "https://www.thatlangon.com/wp-content/uploads/2021/01/hamburger-thatlangon-500x500.jpg",
       ingredients: [
         {
-          name: "bread",
+          id: '1',
           quantity: 1,
         },
         {
-          name: "meat",
+          id: '4',
           quantity: 1,
         },
         {
-          name: "egg",
+          id: '5',
           quantity: 1,
         },
       ],
@@ -27,15 +28,16 @@ const initState = {
       id: 2,
       name: "beefsteak",
       description: "beefsteak description2",
+      duration: '60',
       imgURL:
         "https://www.thatlangon.com/wp-content/uploads/2021/01/hamburger-thatlangon-500x500.jpg",
       ingredients: [
         {
-          name: "beef",
+          id: "7",
           quantity: 2,
         },
         {
-          name: "celery",
+          id: "6",
           quantity: 5,
         },
       ],
@@ -44,11 +46,12 @@ const initState = {
       id: 3,
       name: "fried chicken",
       description: "gà chiên ròn nhó",
+      duration: '60',
       imgURL:
         "https://bizweb.dktcdn.net/100/420/256/files/cach-chien-ga-kfc-5.jpg?v=1623231923691",
       ingredients: [
         {
-          name: "chicken",
+          id: '2',
           quantity: 1,
         },
       ],
@@ -56,29 +59,46 @@ const initState = {
   ],
   ingredients: [
     {
-      id: 1,
+      id: '1',
       name: "Bread",
+      unit: '',
       price: 80,
     },
     {
-      id: 2,
+      id: '2',
       name: "chicken",
+      unit: '',
       price: 100,
     },
     {
-      id: 3,
+      id: '3',
       name: "Apples",
+      unit: '',
       price: 20,
     },
     {
-      id: 4,
+      id: '4',
       name: "egg",
+      unit: '',
       price: 55,
     },
     {
-      id: 5,
+      id: '5',
       name: "meat",
+      unit: 'kg',
       price: 22,
+    },
+    {
+      id: '6',
+      name: "celery",
+      unit: 'kg',
+      price: 5,
+    },
+    {
+      id: '7',
+      name: "beef",
+      unit: 'kg',
+      price: 50,
     },
   ],
 };
@@ -88,24 +108,24 @@ const rootReducer = (state = initState, action) => {
     case ACTION.ADD_RECIPE:
       return {
         ...state,
-        recipeList: [...state.recipeList, action.payload],
+        recipes: [...state.recipes, action.payload],
       };
 
     case ACTION.UPDATE_RECIPE:
-      const recipeList = [...state.recipeList];
-      const index = recipeList.findIndex(
+      const recipes = [...state.recipes];
+      const index = recipes.findIndex(
         (recipe) => recipe.id === action.payload.id
       );
-      recipeList[index] = action.payload;
-      return { ...state, recipeList: recipeList };
+      recipes[index] = action.payload;
+      return { ...state, recipes: recipes };
 
     case ACTION.REMOVE_RECIPE:
-      const recipeList1 = [...state.recipeList];
-      const removeRecipe = recipeList.find(
+      const recipeList1 = [...state.recipes];
+      const removeRecipe = recipes.find(
         (recipe) => recipe.id === action.payload.id
       );
       recipeList1.slice(removeRecipe, 1);
-      return { ...state, recipeList: recipeList1 };
+      return { ...state, recipes: recipeList1 };
 
     case ACTION.ADD_INGREDIENT:
       return {
