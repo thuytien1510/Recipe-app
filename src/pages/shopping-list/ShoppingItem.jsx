@@ -1,5 +1,5 @@
 import React from "react";
-import './StyleShoppingListComponent.css'
+import './ShoppingList.style.css'
 
 export default function ShoppingItem({ item, handleClickItemOrder }) {
   return (

@@ -163,6 +163,18 @@ const rootReducer = (state = initState, action) => {
       return { ...state, ingredients: newIngredients };
     }
 
+    case ACTION.UPDATE_SHOPPING_RECIPE: {
+      const foundIndex = state.shopping.findIndex(s => s.recipeId === action.payload.recipeId);
+
+      const newShopping = action.payload.quantity > 0 ? [
+        ...state.shopping.slice(0, foundIndex),
+        action.payload,
+        ...state.shopping.slice(foundIndex + 1)
+      ] : state.shopping.filter(s => s.recipeId !== action.payload.recipeId)
+
+      return { ...state, shopping: newShopping };
+    }
+
     default:
       return state;
   }

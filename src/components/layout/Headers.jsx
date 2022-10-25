@@ -1,8 +1,6 @@
-// import { NavLink, Navbar, Nav, Container } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 import "../../App.css";
 
@@ -11,7 +9,9 @@ function Headers() {
     <>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container className="w-75 text-center">
-          <Navbar.Brand>
+          <Navbar.Brand
+            as={Link} to="/"
+          >
             <img
               src="https://png.pngtree.com/png-vector/20190528/ourlarge/pngtree-fast-food-typographical-logo-design-concept-for-label-template-packaging-png-image_1111325.jpg"
               className="logo"

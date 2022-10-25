@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import IngredientInput from "./IngredientInput";
-import './IngredientItemStyle.css'
+import './IngredientItem.style.css'
 
 export default function IngredientItem({ ingredient, onUpdate, onRemove }) {
   const [isEdit, setIsEdit] = useState(false);

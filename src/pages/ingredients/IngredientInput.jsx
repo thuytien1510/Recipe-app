@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
-import "./IngredientInputStyle.css";
+import "./IngredientInput.style.css";
 import Modal from "react-bootstrap/Modal";
 
 export default function IngredientInput({ ingredient, onChange, onCancel }) {

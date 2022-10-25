@@ -1,18 +1,25 @@
-import React, { useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import { getIngredients } from "../../redux/selectors";
-import "./StyleRecipeComponent.css";
-import "./RecipeItemStyle.css";
+import React, { useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getIngredients, getShoppingRecipeQuantity } from "../../redux/selectors";
+import "./Recipes.style.css";
+import "./RecipeItem.style.css";
+import { updateShoppingRecipe } from "../../redux/actions";
 
-export default function RecipeItem({ recipe, onClick, display }) {
+export default function RecipeItem({ recipe, onClick, isShoppingList }) {
+  const dispatch = useDispatch();
   const ingredients = useSelector(getIngredients);
-  const [count, setCount] = useState(0);
-  const handelPlus = () => {
-    setCount(count + 1);
+  const quantity = useSelector(getShoppingRecipeQuantity(recipe.id));
+
+  const handelPlus = (event) => {
+    event.stopPropagation()
+    dispatch(updateShoppingRecipe({ recipeId: recipe.id, quantity: quantity + 1 }))
   };
-  const handelMinus = () => {
-    setCount(count - 1);
+
+  const handelMinus = (event) => {
+    event.stopPropagation()
+    dispatch(updateShoppingRecipe({ recipeId: recipe.id, quantity: quantity - 1 }))
   };
+
   const ingredientsDisplay = useMemo(() => {
     return recipe.ingredients
       .map((item) => {
@@ -25,11 +32,11 @@ export default function RecipeItem({ recipe, onClick, display }) {
   return (
     <div
       onClick={() => {
-        onClick(recipe);
+        onClick && onClick(recipe);
       }}
       key={recipe.id}
-      className="d-flex list-item border rounded p-2 bg-white text-black mb-2 form-recipe box-hover recipe-item"
-      style={{ minHeight: "100px", cursor: "pointer" }}
+      className="d-flex list-item border rounded p-2 bg-white text-black form-recipe box-hover"
+      style={{ cursor: "pointer" }}
     >
       <img
         src={recipe.imgURL}
@@ -48,14 +55,15 @@ export default function RecipeItem({ recipe, onClick, display }) {
             {ingredientsDisplay}
           </span>
         </p>
-        {display && (
+
+        {isShoppingList && (
           <div className="d-flex gap-2 ms-4">
             <div onClick={handelMinus}>
-              <i class="fa-sharp fa-solid fa-minus"></i>
+              <i className="fa-sharp fa-solid fa-minus"></i>
             </div>
-            {count}
+            {quantity}
             <div onClick={handelPlus}>
-              <i class="fa-solid fa-plus"></i>
+              <i className="fa-solid fa-plus"></i>
             </div>
           </div>
         )}

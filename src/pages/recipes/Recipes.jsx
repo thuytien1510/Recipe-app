@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 import { recipeListSelector } from "../../redux/selectors";
 import RecipeItem from "./RecipeItem";
 import RecipesModal from "./RecipesModal";
-import "./StyleRecipeComponent.css";
+import "./Recipes.style.css";
+
 export default function Recipes() {
   const [displayForm, setDisplayForm] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState();
   const recipes = useSelector(recipeListSelector);
-  // console.log(recipes)
   const handleCloseForm = () => {
     setDisplayForm(false);
     setSelectedRecipe();
@@ -38,13 +38,13 @@ export default function Recipes() {
         Add New Recipe
       </Button>
 
-      <div className="">
-        <div className="recipe-layout">
+        <div class="row g-4">
           {recipes.map((recipe) => (
-            <RecipeItem key={recipe.id} recipe={recipe} onClick={handleViewRecipe} />
+            <div key={recipe.id} className="col-12 col-lg-6">
+              <RecipeItem recipe={recipe} onClick={handleViewRecipe} />
+            </div>
           ))}
         </div>
-      </div>
 
       {displayForm && (
         <RecipesModal recipe={selectedRecipe} onClose={handleCloseForm} />

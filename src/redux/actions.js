@@ -5,6 +5,7 @@ export const ACTION = {
   ADD_INGREDIENT: "ingredients/addIngredient",
   UPDATE_INGREDIENT: "ingredients/updateIngredient",
   REMOVE_INGREDIENT: "ingredients/removeIngredient",
+  UPDATE_SHOPPING_RECIPE: "shopping/updateShoppingRecipe",
 }
 
 export const addRecipe = (data) => {
@@ -46,5 +47,12 @@ export const removeIngredient = (ingredientId) => {
   return {
     type: ACTION.REMOVE_INGREDIENT,
     payload: ingredientId,
+  };
+};
+
+export const updateShoppingRecipe = (shoppingData) => {
+  return {
+    type: ACTION.UPDATE_SHOPPING_RECIPE,
+    payload: shoppingData,
   };
 };
