@@ -1,70 +1,54 @@
 import React from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { useDispatch, useSelector } from "react-redux";
-import { addRecipe } from "../../redux/actions";
+import { useSelector } from "react-redux";
 import { recipeListSelector } from "../../redux/selectors";
-import '../../App.css'
 import RecipeItem from "./RecipeItem";
 import RecipesModal from "./RecipesModal";
-
+import "./StyleRecipeComponent.css";
 export default function Recipes() {
   const [displayForm, setDisplayForm] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState();
-  const dispatch = useDispatch();
   const recipes = useSelector(recipeListSelector);
-
-  // const handelDisplay = () => {
-  //   setDisplayForm(!displayForm);
-  //   setRecipe(false);
-  // };
-
-  // const addNewRecipe = (data) => {
-  //   const recipe = {
-  //     id: uuidv4(),
-  //     ...data,
-  //   };
-  //   dispatch(addRecipe(recipe));
-  // };
-
+  // console.log(recipes)
   const handleCloseForm = () => {
     setDisplayForm(false);
-  }
+    setSelectedRecipe();
+  };
 
   const handleViewRecipe = (recipe) => {
     setSelectedRecipe(recipe);
     setDisplayForm(true);
-  }
+  };
 
   const handleAddRecipe = () => {
     setSelectedRecipe();
     setDisplayForm(true);
-  }
+  };
 
   return (
     <div className="container mt-4">
-      <Button variant="dark" onClick={handleAddRecipe} className="mb-5 p-2 px-4">
+      <div className="header">Recipes</div>
+
+      <Button
+        variant="dark"
+        onClick={handleAddRecipe}
+        className="mb-4 ms-2 mt-3 p-2 px-3"
+      >
         Add New Recipe
       </Button>
 
-      <div className="row">
-        <div className="col-md-6">
+      <div className="">
+        <div className="recipe-layout">
           {recipes.map((recipe) => (
-            <RecipeItem
-              key={recipe.id}
-              recipe={recipe}
-              onClick={handleViewRecipe}
-            />
+            <RecipeItem key={recipe.id} recipe={recipe} onClick={handleViewRecipe} />
           ))}
         </div>
       </div>
 
-      <RecipesModal
-        recipe={selectedRecipe}
-        displayForm={displayForm}
-        onClose={handleCloseForm}
-      />
+      {displayForm && (
+        <RecipesModal recipe={selectedRecipe} onClose={handleCloseForm} />
+      )}
     </div>
   );
 }

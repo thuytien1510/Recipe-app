@@ -44,9 +44,16 @@
   align-items: center;
 }
 .logo{
-  height: 80px;
-  width: 80px;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
-  margin-left: 5%;
-  position: absolute;
+}
+body{
+  background-color: #f7df3f !important;
+}
+.nav-link:active{
+  color: #f7df3f;
+}
+.nav-link:hover{
+  transform: scale(1.02);
 }

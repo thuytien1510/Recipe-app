@@ -6,3 +6,17 @@
     transform: scale(1.02);
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px !important;
 }
+
+.menu {
+    display: grid;
+    grid-template-columns: 6fr 2fr;
+    gap: 10px
+}
+.input-add{
+    width: 30px;
+    height: 30px;
+    accent-color: orange;
+}
+.statistical{
+    min-width: 400px;
+}

@@ -3,9 +3,9 @@ import { ACTION } from "./actions";
 const initState = {
   recipes: [
     {
-      id: 1,
-      name: "Hamburger1",
-      description: "Hamburger description1",
+      id: '1',
+      name: "Hamburger",
+      description: "A patty of ground meat, typically beef—placed inside a sliced bun or bread roll",
       duration: '18',
       imgURL:
         "https://www.thatlangon.com/wp-content/uploads/2021/01/hamburger-thatlangon-500x500.jpg",
@@ -25,12 +25,12 @@ const initState = {
       ],
     },
     {
-      id: 2,
-      name: "beefsteak",
-      description: "beefsteak description2",
+      id: '2',
+      name: "Beefsteak",
+      description: "A flat cut of beef with parallel faces, usually cut perpendicular to the muscle fibers",
       duration: '60',
       imgURL:
-        "https://www.thatlangon.com/wp-content/uploads/2021/01/hamburger-thatlangon-500x500.jpg",
+        "https://onesteak.vn/wp-content/uploads/2021/03/cach-lam-bo-beefsteak-ngon-tai-ngon.jpg",
       ingredients: [
         {
           id: "7",
@@ -43,9 +43,9 @@ const initState = {
       ],
     },
     {
-      id: 3,
-      name: "fried chicken",
-      description: "gà chiên ròn nhó",
+      id: '3',
+      name: "Fried Chicken",
+      description: "A dish consisting of chicken pieces that have been coated with seasoned flour or batter and pan-fried, deep fried, pressure fried, or air fried.",
       duration: '60',
       imgURL:
         "https://bizweb.dktcdn.net/100/420/256/files/cach-chien-ga-kfc-5.jpg?v=1623231923691",
@@ -66,7 +66,7 @@ const initState = {
     },
     {
       id: '2',
-      name: "chicken",
+      name: "Chicken",
       unit: '',
       price: 100,
     },
@@ -78,29 +78,43 @@ const initState = {
     },
     {
       id: '4',
-      name: "egg",
+      name: "Egg",
       unit: '',
       price: 55,
     },
     {
       id: '5',
-      name: "meat",
+      name: "Meat",
       unit: 'kg',
       price: 22,
     },
     {
       id: '6',
-      name: "celery",
+      name: "Celery",
       unit: 'kg',
       price: 5,
     },
     {
       id: '7',
-      name: "beef",
+      name: "Beef",
       unit: 'kg',
       price: 50,
     },
   ],
+  shopping: [
+    {
+      recipeId: '1',
+      quantity: 1,
+    },
+    {
+      recipeId: '2',
+      quantity: 1,
+    },
+    {
+      recipeId: '3',
+      quantity: 2,
+    }
+  ]
 };
 
 const rootReducer = (state = initState, action) => {
@@ -111,21 +125,21 @@ const rootReducer = (state = initState, action) => {
         recipes: [...state.recipes, action.payload],
       };
 
-    case ACTION.UPDATE_RECIPE:
-      const recipes = [...state.recipes];
-      const index = recipes.findIndex(
-        (recipe) => recipe.id === action.payload.id
-      );
-      recipes[index] = action.payload;
-      return { ...state, recipes: recipes };
+    case ACTION.UPDATE_RECIPE: {
+      const foundIndex = state.recipes.findIndex(recipe => recipe.id === action.payload.id);
+      const newRecipes = [
+        ...state.recipes.slice(0, foundIndex),
+        action.payload,
+        ...state.recipes.slice(foundIndex + 1)
+      ];
 
-    case ACTION.REMOVE_RECIPE:
-      const recipeList1 = [...state.recipes];
-      const removeRecipe = recipes.find(
-        (recipe) => recipe.id === action.payload.id
-      );
-      recipeList1.slice(removeRecipe, 1);
-      return { ...state, recipes: recipeList1 };
+      return { ...state, recipes: newRecipes };
+    }
+
+    case ACTION.REMOVE_RECIPE: {
+      const newRecipes = state.recipes.filter((ingdt) => (ingdt.id !== action.payload));
+      return { ...state, recipes: newRecipes };
+    }
 
     case ACTION.ADD_INGREDIENT:
       return {

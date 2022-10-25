@@ -28,7 +28,7 @@ export default function IngredientItem({ ingredient, onUpdate, onRemove }) {
       onCancel={handlCancel}
     />
   ) : (
-    <div className="d-flex gap-2 my-2 justify-content-between flex-wrap border border-2 align-items-center p-2 px-3 rounded-4 w-75">
+    <div className="d-flex gap-2 my-2 justify-content-between flex-wrap border border-2 align-items-center p-2 px-3 rounded-4 w-75 mb-2">
       <div className="text-dark fs-5 d-flex flex-wrap gap-3 ingredient">
         <span>Name: {ingredient.name}</span>
          <span>Unit: {ingredient.unit}</span>

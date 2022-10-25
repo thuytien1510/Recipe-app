@@ -18,8 +18,8 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
       setName("");
       setUnit("");
       setPrice(0);
-      setValid(false)
-    }else setValid(true)
+      setValid(false);
+    } else setValid(true);
   };
 
   const handleSave = () => {
@@ -43,15 +43,19 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
 
   return (
     <>
-      <form className="d-flex flex-wrap mb-4 gap-2 w-75">
+      <form className="d-flex flex-wrap my-3 gap-4 w-75 justify-content-center align-items-center">
         <div>
-        <input
-          type="text"
-          value={name}
-          onChange={handleNameChange}
-          placeholder="Ingredient name"
-        />
-        {valid && <div className="position-absolute ms-2 text-danger">Please enter Ingredient name</div>}
+          <input
+            type="text"
+            value={name}
+            onChange={handleNameChange}
+            placeholder="Ingredient name"
+          />
+          {valid && (
+            <div className="position-absolute ms-2 text-danger mb-2">
+              Please enter Ingredient name
+            </div>
+          )}
         </div>
         <input
           type="text"
@@ -75,17 +79,15 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
             </Button>
           </div>
         ) : (
-          <Button variant="primary" onClick={handleAdd}>
+          <Button variant="dark" onClick={handleAdd}>
             Add
           </Button>
         )}
       </form>
       <>
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Header closeButton></Modal.Header>
+          <Modal.Body className="fs-4">Are you sure want to change?</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close

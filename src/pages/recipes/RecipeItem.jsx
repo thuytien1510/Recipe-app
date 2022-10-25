@@ -1,17 +1,25 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { getIngredients } from "../../redux/selectors";
-import './StyleRecipeComponent.css'
+import "./StyleRecipeComponent.css";
+import "./RecipeItemStyle.css";
 
-export default function RecipeItem({ recipe, onClick }) {
+export default function RecipeItem({ recipe, onClick, display }) {
   const ingredients = useSelector(getIngredients);
+  const [count, setCount] = useState(0);
+  const handelPlus = () => {
+    setCount(count + 1);
+  };
+  const handelMinus = () => {
+    setCount(count - 1);
+  };
   const ingredientsDisplay = useMemo(() => {
     return recipe.ingredients
       .map((item) => {
-        const ing = ingredients.find(i => i.id === item.id);
-        return ing?.name
+        const ing = ingredients.find((i) => i.id === item.id);
+        return ing?.name;
       })
-      .join(', ');
+      .join(", ");
   }, [ingredients, recipe]);
 
   return (
@@ -20,25 +28,38 @@ export default function RecipeItem({ recipe, onClick }) {
         onClick(recipe);
       }}
       key={recipe.id}
-      className="d-flex justify-content-between align-items-center list-item flex-wrap border rounded p-2 bg-white text-black mb-4 form-recipe box-hover"
+      className="d-flex list-item border rounded p-2 bg-white text-black mb-2 form-recipe box-hover recipe-item"
       style={{ minHeight: "100px", cursor: "pointer" }}
     >
-      <div className="content ">
+      <img
+        src={recipe.imgURL}
+        alt={`img-recipe-${recipe.name}`}
+        width="200px"
+        className="img-recipe"
+      />
+      <div className="content mx-2">
         <h3>{recipe.name}</h3>
-        <p>Descriptiton: {recipe.description}</p>
+        <p className="text-break desc-recipe">
+          Descriptiton: {recipe.description}
+        </p>
         <p>
           Ingredients:{" "}
           <span className="me-2 fst-italic fw-semibold">
             {ingredientsDisplay}
           </span>
         </p>
+        {display && (
+          <div className="d-flex gap-2 ms-4">
+            <div onClick={handelMinus}>
+              <i class="fa-sharp fa-solid fa-minus"></i>
+            </div>
+            {count}
+            <div onClick={handelPlus}>
+              <i class="fa-solid fa-plus"></i>
+            </div>
+          </div>
+        )}
       </div>
-      <img
-        src={recipe.imgURL}
-        alt={`img-recipe-${recipe.name}`}
-        width="100px"
-        style={{ maxWidth: "100px" }}
-      />
     </div>
   );
 }
