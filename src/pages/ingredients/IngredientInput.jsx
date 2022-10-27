@@ -10,7 +10,7 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
   const [unit, setUnit] = useState(ingredient?.unit || "");
   const [price, setPrice] = useState((ingredient?.price || "0").toString());
   const [show, setShow] = useState(false);
-  const [valid, setValid] = useState(false);
+  const [invalid, setInValid] = useState(false);
 
   const handleAdd = () => {
     if (name) {
@@ -18,13 +18,15 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
       setName("");
       setUnit("");
       setPrice(0);
-      setValid(false);
-    } else setValid(true);
+      setInValid(false);
+    } else setInValid(true);
   };
 
   const handleSave = () => {
-    onChange({ id: ingredient.id, name, unit, price });
     setShow(true);
+    if (name) {
+      onChange({ id: uuidv4(), name, unit, price });
+    } else setInValid(true);
   };
 
   const handleClose = () => setShow(false);
@@ -51,7 +53,7 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
             onChange={handleNameChange}
             placeholder="Ingredient name"
           />
-          {valid && (
+          {invalid && (
             <div className="position-absolute ms-2 text-danger mb-2  ">
               Please enter Ingredient name
             </div>
@@ -65,6 +67,7 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
         />
         <input
           type="number"
+          min={0}
           value={price}
           onChange={handlePriceChange}
           placeholder="Ingredient price"
@@ -87,14 +90,20 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
       <>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton></Modal.Header>
-          <Modal.Body className="fs-4">Are you sure want to change?</Modal.Body>
+          <Modal.Body className="fs-4">
+            {!invalid
+              ? "Are you sure want to change?"
+              : "Please enter Ingredient name"}
+          </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={onCancel}>
-              Save Changes
-            </Button>
+            {!invalid && (
+              <Button variant="primary" onClick={onCancel}>
+                Save Changes
+              </Button>
+            )}
           </Modal.Footer>
         </Modal>
       </>

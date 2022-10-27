@@ -98,7 +98,6 @@ export default function RecipesModal({ recipe, onClose }) {
 
   const handleSave = async () => {
     const isValid = await trigger();
-    console.log(errors)
     if (!isValid) return;
 
     if (isAddingNew) {
@@ -214,7 +213,6 @@ export default function RecipesModal({ recipe, onClose }) {
                   />
                   <Button
                     onClick={() => remove(field.id)}
-                    type="danger"
                     className="btn-danger px-4"
                     style={{ marginTop: '29px', height: '45px' }}
                   >

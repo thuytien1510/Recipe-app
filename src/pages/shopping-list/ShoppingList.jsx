@@ -37,12 +37,12 @@ export default function ListItem() {
                     <th>Quantity</th>
                     <th>Unit</th>
                     <th>Price/Unit</th>
-                    <th width="140" className="text-right">Price</th>
+                    <th width="140" className="text-right">
+                      Price
+                    </th>
                   </tr>
                 </thead>
-
                 <tbody className="text-secondary-d3">
-                  <tr></tr>
                   {totalIngreditents.map((item) => {
                     const ingItem = ingredients.find(
                       (ing) => ing.id === item.id
@@ -61,20 +61,22 @@ export default function ListItem() {
                   })}
 
                   <tr>
-                    <td colSpan={4} className="py-2 text-bg-warning fs-6 fw-bold">Total Amount:</td>
+                    <td
+                      colSpan={4}
+                      className="py-2 text-bg-warning fs-6 fw-bold"
+                    >
+                      Total Amount:
+                    </td>
                     <td className="text-right py-2 text-bg-warning fs-6 fw-bold">
                       ${totalPrice}
                     </td>
                   </tr>
                 </tbody>
               </table>
-              {/* <div className="py-2 text-bg-warning fs-6 fw-bold">
-                Total Amount : ${totalPrice}
-              </div> */}
             </div>
           </div>
         </div>
-        <div className="col-6 custom">
+        <div className="col-6 custom mb-5">
           <h3 className="fw-bold fs-2 text-center">MENU</h3>
           <div className="d-flex flex-wrap gap-3">
             {recipes.map((recipe) => (

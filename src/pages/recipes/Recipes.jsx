@@ -22,6 +22,7 @@ export default function Recipes() {
   };
 
   const handleAddRecipe = () => {
+    
     setSelectedRecipe();
     setDisplayForm(true);
   };
@@ -38,13 +39,13 @@ export default function Recipes() {
         Add New Recipe
       </Button>
 
-        <div className="row g-4">
-          {recipes.map((recipe) => (
-            <div key={recipe.id} className="col-12 col-lg-6">
-              <RecipeItem recipe={recipe} onClick={handleViewRecipe} />
-            </div>
-          ))}
-        </div>
+      <div className="row g-4 pb-5">
+        {recipes.map((recipe) => (
+          <div key={recipe.id} className="col-12 col-lg-6">
+            <RecipeItem recipe={recipe} onClick={handleViewRecipe} />
+          </div>
+        ))}
+      </div>
 
       {displayForm && (
         <RecipesModal recipe={selectedRecipe} onClose={handleCloseForm} />
