@@ -10,11 +10,9 @@ function RecipeDetail({ recipe }) {
         <div className='text-dark'>
             <img src={recipe.imgURL} alt="" className='w-50 h-50 d-block rounded-1 border border-3 my-3 mx-auto' />
             <div className='p-3 pt-1 w-80'>
-                <h2 className='mt-1 text-center text-warning'>{recipe.name}</h2>
-                <h4 className='mt-1 text-center'>Duration: {recipe.duration} mins</h4>
-
-                <h5 className='mt-2 text-center text-break'>{recipe.description}</h5>
-
+                <h2 className='mt-1 text-center text-warning fs-1'>{recipe.name}</h2>
+                <h5 className='mt-1 text-center'>Duration: {recipe.duration} mins</h5>
+                <h5 className='mt-2 text-center text-break fst-italic fs-6'>{recipe.description}</h5>
                 <div className='p-3'>
                     <h5>Ingredients:</h5>
                     {recipe.ingredients.map(item => {

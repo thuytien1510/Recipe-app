@@ -35,8 +35,8 @@ export default function RecipeItem({ recipe, onClick, isShoppingList }) {
         onClick && onClick(recipe);
       }}
       key={recipe.id}
-      className="d-flex list-item border rounded p-2 bg-white text-black form-recipe box-hover"
-      style={{ cursor: "pointer" }}
+      className="d-flex list-item border rounded p-2 bg-white text-black form-recipe box-hover mb-3"
+      style={{ cursor: "pointer", height: '100%'}}
     >
       <img
         src={recipe.imgURL}
@@ -57,13 +57,16 @@ export default function RecipeItem({ recipe, onClick, isShoppingList }) {
         </p>
 
         {isShoppingList && (
-          <div className="d-flex gap-2 ms-4">
-            <div onClick={handelMinus}>
+          <div className="d-flex ms-4 fs-4 justify-content-end flex-column align-items-end">
+            <p className="fs-6">Quantity purchase</p>
+            <div className="d-flex gap-3">
+            <div onClick={handelMinus} className="">
               <i className="fa-sharp fa-solid fa-minus"></i>
             </div>
             {quantity}
             <div onClick={handelPlus}>
               <i className="fa-solid fa-plus"></i>
+            </div>
             </div>
           </div>
         )}

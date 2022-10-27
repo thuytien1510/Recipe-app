@@ -43,11 +43,6 @@
   display: flex;
   align-items: center;
 }
-.logo{
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-}
 body{
   background-color: #f7df3f !important;
 }
@@ -56,4 +51,14 @@ body{
 }
 .nav-link:hover{
   transform: scale(1.02);
+}
+.home-bg{
+  background-image: url('https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.home-bg div{
+  height: 100vh;
+  overflow: hidden;
+  text-shadow: rgba(255, 255, 255, 0.7) 20px 10px 40px, rgba(255, 255, 255, 0.8) 0px 6px 6px !important;
 }

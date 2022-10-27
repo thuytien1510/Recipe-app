@@ -32,8 +32,9 @@ export default function Ingredients() {
   };
 
   return (
-    <div className="container card mt-4 mb-3 pb-5 p-4 w-75 box-show d-flex justify-content-center align-items-center">
-      <div className="header mb-4">Ingredients</div>
+    <>
+    <div className="container card mt-5 mb-5 p-2 box-show ">
+      <div className="header mb-4 fs-1">Ingredients</div>
       <IngredientInput
         onChange={handleAdd}
       />
@@ -47,5 +48,7 @@ export default function Ingredients() {
         />
       )}
     </div>
+    <div className="p-2"></div>
+    </>
   );
 }

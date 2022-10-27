@@ -43,7 +43,7 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
 
   return (
     <>
-      <form className="d-flex flex-wrap my-3 gap-4 w-75 justify-content-center align-items-center">
+      <form className="d-flex flex-wrap gap-4 justify-content-center align-items-center my-3 mb-4">
         <div>
           <input
             type="text"
@@ -52,7 +52,7 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
             placeholder="Ingredient name"
           />
           {valid && (
-            <div className="position-absolute ms-2 text-danger mb-2">
+            <div className="position-absolute ms-2 text-danger mb-2  ">
               Please enter Ingredient name
             </div>
           )}
@@ -70,7 +70,7 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
           placeholder="Ingredient price"
         />
         {ingredient?.id ? (
-          <div>
+          <div className="d-flex gap-3 mx-4">
             <Button variant="default" onClick={onCancel}>
               Cancel
             </Button>
@@ -79,7 +79,7 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
             </Button>
           </div>
         ) : (
-          <Button variant="dark" onClick={handleAdd}>
+          <Button variant="dark" onClick={handleAdd} className="px-4">
             Add
           </Button>
         )}

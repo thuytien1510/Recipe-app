@@ -2,25 +2,25 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
-import "../../App.css";
 
 function Headers() {
   return (
     <>
       <Navbar bg="dark" variant="dark" expand="lg">
-        <Container className="w-75 text-center">
+        <Container className="text-center">
           <Navbar.Brand
             as={Link} to="/"
           >
             <img
               src="https://png.pngtree.com/png-vector/20190528/ourlarge/pngtree-fast-food-typographical-logo-design-concept-for-label-template-packaging-png-image_1111325.jpg"
-              className="logo"
+              className="logo rounded-circle"
               alt="logo"
+              width="100px"
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav" className="text-end">
-            <Nav className="me-auto fs-5 ms-2 nav-link">
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mx-auto fs-5  nav-link ">
               <Nav.Link as={Link} to="/">
                 Home
               </Nav.Link>
