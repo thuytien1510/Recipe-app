@@ -33,9 +33,9 @@ export default function ListItem() {
               <table className="table table-striped table-borderless mb-0">
                 <thead className="text-bg-dark bgc-default-tp1 text-white fs-6">
                   <tr>
-                    <th>Ingredient</th>
                     <th>Quantity</th>
                     <th>Unit</th>
+                    <th>Ingredient</th>
                     <th>Price/Unit</th>
                     <th width="140" className="text-right">
                       Price

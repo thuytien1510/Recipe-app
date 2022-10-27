@@ -141,7 +141,7 @@ const initState = {
         "https://dynaimage.cdn.cnn.com/cnn/q_auto,w_602,c_fill,g_auto,h_339,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F140808181414-06-summer-of-1984.jpg",
       ingredients: [
         {
-          id: '2',
+          id: '5',
           quantity: 1,
         },
       ],
@@ -157,7 +157,7 @@ const initState = {
     {
       id: '2',
       name: "Chicken",
-      unit: '',
+      unit: 'kg',
       price: 100,
     },
     {

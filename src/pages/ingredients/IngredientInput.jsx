@@ -67,7 +67,7 @@ export default function IngredientInput({ ingredient, onChange, onCancel }) {
         />
         <input
           type="number"
-          min={0}
+          min="0"
           value={price}
           onChange={handlePriceChange}
           placeholder="Ingredient price"
