@@ -38,7 +38,7 @@ export default function Recipes() {
         Add New Recipe
       </Button>
 
-        <div class="row g-4">
+        <div className="row g-4">
           {recipes.map((recipe) => (
             <div key={recipe.id} className="col-12 col-lg-6">
               <RecipeItem recipe={recipe} onClick={handleViewRecipe} />

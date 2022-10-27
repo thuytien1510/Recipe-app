@@ -28,20 +28,20 @@ export default function ListItem() {
       <div className="d-flex flex-wrap gap-3 justify-content-center w-100 custom">
         <div className="custom">
           <h3 className="fw-bold fs-2 text-center">BILL</h3>
-          <div class="container card px-0 text-center box-show me-2 custom rounded-3">
+          <div className="container card px-0 text-center box-show me-2 custom">
             <div>
-              <table class="table table-striped table-borderless rounded-3">
-                <thead class="text-bg-dark bgc-default-tp1 text-white fs-6">
+              <table className="table table-striped table-borderless mb-0">
+                <thead className="text-bg-dark bgc-default-tp1 text-white fs-6">
                   <tr>
+                    <th>Ingredient</th>
                     <th>Quantity</th>
-                    <th> Unit</th>
-                    <th> Recipe</th>
-                    <th>Price</th>
-                    <th width="140">Amount</th>
+                    <th>Unit</th>
+                    <th>Price/Unit</th>
+                    <th width="140" className="text-right">Price</th>
                   </tr>
                 </thead>
 
-                <tbody class="text-95 text-secondary-d3">
+                <tbody className="text-secondary-d3">
                   <tr></tr>
                   {totalIngreditents.map((item) => {
                     const ingItem = ingredients.find(
@@ -52,18 +52,25 @@ export default function ListItem() {
                         <td>{item.quantity}</td>
                         <td>{ingItem.unit}</td>
                         <td>{ingItem.name}</td>
-                        <td class="text-95">${ingItem.price}</td>
-                        <td class="text-secondary-d2">
+                        <td className="text-95">${ingItem.price}</td>
+                        <td className="text-right">
                           ${item.quantity * ingItem.price}
                         </td>
                       </tr>
                     );
                   })}
+
+                  <tr>
+                    <td colSpan={4} className="py-2 text-bg-warning fs-6 fw-bold">Total Amount:</td>
+                    <td className="text-right py-2 text-bg-warning fs-6 fw-bold">
+                      ${totalPrice}
+                    </td>
+                  </tr>
                 </tbody>
               </table>
-              <div class="py-2 text-bg-warning fs-6 fw-bold">
+              {/* <div className="py-2 text-bg-warning fs-6 fw-bold">
                 Total Amount : ${totalPrice}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
