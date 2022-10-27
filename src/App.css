@@ -53,16 +53,20 @@ body{
   transform: scale(1.02);
 }
 .home-bg{
-  background-image: url('https://i.ndtvimg.com/i/2015-07/waffles-and-chicken-625_625x350_81435923012.jpg');
+  background-image: url('https://images.yen.com.gh/images/da77ece8620b5786.jpg?imwidth=900');
   background-repeat: no-repeat;
   background-size: cover;
 }
-.home-bg div{
+.home-bg{
   height: 100vh;
   overflow: hidden;
+}
+.home-bg p{
+  font-weight: 500;
+}
+.home-bg .header{
   text-shadow: rgba(255, 255, 255, 0.7) 20px 10px 40px, rgba(255, 255, 255, 0.8) 0px 6px 6px !important;
 }
-
 .text-right {
   text-align: right;
   padding-right: 20px !important;
