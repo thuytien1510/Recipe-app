@@ -43,25 +43,31 @@
   display: flex;
   align-items: center;
 }
-.logo{
-  height: 80px;
-  width: 80px;
-  border-radius: 50%;
-  margin-left: 5%;
-  position: absolute;
+body{
+  background-color: #f7df3f !important;
 }
-
-input{
-  color: black !important;
+.nav-link:active{
+  color: #f7df3f;
 }
-
-.box-hover{
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px !important;
-
+.nav-link:hover{
+  transform: scale(1.02);
 }
-.box-hover:hover{
-  transform: scale(1.01);
+.home-bg{
+  background-image: url('https://images.yen.com.gh/images/da77ece8620b5786.jpg?imwidth=900');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.active{
-  color: white;
+.home-bg{
+  height: 100vh;
+  overflow: hidden;
+}
+.home-bg p{
+  font-weight: 500;
+}
+.home-bg .header{
+  text-shadow: rgba(255, 255, 255, 0.7) 20px 10px 40px, rgba(255, 255, 255, 0.8) 0px 6px 6px !important;
+}
+.text-right {
+  text-align: right;
+  padding-right: 20px !important;
 }

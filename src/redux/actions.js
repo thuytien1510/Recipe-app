@@ -1,41 +1,58 @@
+export const ACTION = {
+  ADD_RECIPE: "recipes/addRecipe",
+  UPDATE_RECIPE: "recipes/updateRecipe",
+  REMOVE_RECIPE: "recipes/removeRecipe",
+  ADD_INGREDIENT: "ingredients/addIngredient",
+  UPDATE_INGREDIENT: "ingredients/updateIngredient",
+  REMOVE_INGREDIENT: "ingredients/removeIngredient",
+  UPDATE_SHOPPING_RECIPE: "shopping/updateShoppingRecipe",
+}
+
 export const addRecipe = (data) => {
   return {
-    type: "recipeList/addRecipe",
+    type: ACTION.ADD_RECIPE,
     payload: data,
   };
 };
 
 export const updateRecipe = (data) => {
   return {
-    type: "recipeList/updateRecipe",
+    type: ACTION.UPDATE_RECIPE,
     payload: data,
   };
 };
 
 export const removeRecipe = (data) => {
   return {
-    type: "recipeList/removeRecipe",
+    type: ACTION.REMOVE_RECIPE,
     payload: data,
   };
 };
 
 export const addIngredient = (data) => {
   return {
-    type: "shoppingList/addIngredient",
+    type: ACTION.ADD_INGREDIENT,
     payload: data,
   };
 };
 
-export const updateIngredient = (data) => {
+export const updateIngredient = (ingredient) => {
   return {
-    type: "shoppingList/updateIngredient",
-    payload: data,
+    type: ACTION.UPDATE_INGREDIENT,
+    payload: ingredient,
   };
 };
 
-export const removeIngredient = (data) => {
+export const removeIngredient = (ingredientId) => {
   return {
-    type: "shoppingList/removeIngredient",
-    payload: data,
+    type: ACTION.REMOVE_INGREDIENT,
+    payload: ingredientId,
+  };
+};
+
+export const updateShoppingRecipe = (shoppingData) => {
+  return {
+    type: ACTION.UPDATE_SHOPPING_RECIPE,
+    payload: shoppingData,
   };
 };

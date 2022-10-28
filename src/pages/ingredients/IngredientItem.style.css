@@ -1,0 +1,11 @@
+.ingredient span{
+    width: 180px;
+    background-color: rgb(250, 231, 178);
+    padding: 0.2rem 0.3rem;
+}
+.ingredient span:nth-child(2){
+    width: 100px;
+}
+.ingredient span:nth-child(3){
+    width: 150px;
+}

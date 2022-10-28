@@ -1,0 +1,27 @@
+input{
+  color: black !important;
+  margin-right: 0 !important;
+}
+
+.box-hover{
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px !important;
+
+}
+.box-hover:hover{
+  transform: scale(1.01);
+}
+.active{
+  color: white;
+}
+.recipe-layout{
+  display: flex;
+  gap: 0.625rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.header{
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+  font-size: 4rem;
+}
